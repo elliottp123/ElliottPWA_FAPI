@@ -8,7 +8,10 @@ import logging
 
 
 # Generate a unique basic 16 key: https://acte.ltd/utils/randomkeygen
-app = Flask(__name__)
+app = Flask(__name__, 
+            template_folder='static/templates',
+            static_folder='static')
+
 csrf = CSRFProtect(app)
 app.secret_key = b"6HlQfWhu03PttohW;apl"
 
@@ -37,7 +40,7 @@ def root():
     }
 )
 def index():
-    return render_template("static/templates/index.html")
+    return render_template('index.html')
 
 
 @app.route("/static/templates/index.html", methods=["POST"])
